@@ -1,18 +1,23 @@
 "use client";
 import Headingagebanner from "@/components/CommenComponent/Headingagebanner";
 import CourseCard from "@/components/Course/CourseCard";
+import { useCategories } from "@/hooks/useCategories";
 import { useCourses } from "@/hooks/useCourses";
-import React from "react";
+import React, { useState } from "react";
 
 export default function Courses() {
-const {
-    data,
-    isLoading,
-  } = useCourses();
-
+  const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const { data, isLoading, isFetching } = useCourses(selectedCategory);
+  const [showSkeleton, setShowSkeleton] = useState(false);
+  const { data: categories } = useCategories();
   console.log(data);
+  console.log(selectedCategory);
 
-  
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <Headingagebanner pagename="Our Courses" />
@@ -40,33 +45,82 @@ const {
 
             <input
               type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search courses..."
               className="w-full ml-4 bg-transparent outline-none text-gray-800 placeholder:text-gray-400 text-lg"
             />
+            {/* <input
+                type="text"
+              /> */}
           </div>
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-3 mb-2">
-        <button className="px-5 py-2 rounded-full bg-primary text-white">
+      <div className="flex flex-wrap justify-center gap-3 mb-6">
+        <button
+          onClick={() => {
+            setShowSkeleton(true);
+
+            setSelectedCategory("");
+
+            setTimeout(() => {
+              setShowSkeleton(false);
+            }, 1000);
+          }}
+          className={`px-5 py-2 rounded-full ${
+              selectedCategory === ""
+                ? "bg-primary text-white"
+                : "bg-white border"
+            }`}
+        >
           All
         </button>
 
-        <button className="px-5 py-2 rounded-full bg-white border">
-          Stock Market
-        </button>
+        {categories?.data?.map((item: any) => (
+          <button
+            key={item._id}
+            onClick={() => {
+              setShowSkeleton(true);
 
-        <button className="px-5 py-2 rounded-full bg-white border">
-          Options
-        </button>
+              setSelectedCategory(item._id);
 
-        <button className="px-5 py-2 rounded-full bg-white border">
-          Forex
-        </button>
+              setTimeout(() => {
+                setShowSkeleton(false);
+              }, 1000);
+            }}
+            className={`px-5 py-2 rounded-full ${
+              selectedCategory === item._id
+                ? "bg-primary text-white"
+                : "bg-white border"
+            }`}
+          >
+            {item.name}
+          </button>
+        ))}
       </div>
-      <CourseCard 
-      courses={data?.data} 
-      />
+
+      <div className="flex justify-center mb-4">
+        {isFetching && (
+          <p className="text-primary text-sm">Loading courses...</p>
+        )}
+      </div>
+      {showSkeleton ? (
+        <div className="section-container py-10">
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {[1, 2, 3, 4].map((item) => (
+            <div
+            key={item}
+            className="h-80 bg-gray-200 animate-pulse rounded-3xl"
+            />
+          ))}
+          </div>
+        </div>
+      ) : (
+        <CourseCard courses={data?.data} />
+      )}
+      {/* <CourseCard courses={data?.data} /> */}
     </>
   );
 }

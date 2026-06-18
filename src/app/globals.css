@@ -384,6 +384,10 @@ font-weight: 900;
   padding: 40px 0;
   background-color: #fff;
   height: 80vh;
- 
-
+}
+.coursebox{
+  background-color: color-mix(in oklab, #ebebeb 20%, transparent);
+}
+.text-muted-foreground{
+  color: #71717a;
 }
