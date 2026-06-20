@@ -1,5 +1,6 @@
 
 
+import Link from "next/link";
 import {
   FaInstagram,
   FaLinkedinIn,
@@ -70,7 +71,9 @@ export default function Footer() {
 
             <ul className="space-y-4 text-gray-400">
               <li className="hover:text-[#7ED957] cursor-pointer transition">
+                <Link href="/Copytrading">
                 Copy Trading
+                </Link>
               </li>
 
               <li className="hover:text-[#7ED957] cursor-pointer transition">
@@ -95,19 +98,27 @@ export default function Footer() {
 
             <ul className="space-y-4 text-gray-400">
               <li className="hover:text-[#7ED957] cursor-pointer transition">
+                <Link href="/about">
                 About Us
+                </Link>
               </li>
 
               <li className="hover:text-[#7ED957] cursor-pointer transition">
+                <Link href="/news">
                 Market Insights
+                </Link>
               </li>
 
               <li className="hover:text-[#7ED957] cursor-pointer transition">
+                <Link href="/faq">
                 FAQs
+                </Link>
               </li>
 
               <li className="hover:text-[#7ED957] cursor-pointer transition">
+                <Link href="/contact">
                 Contact
+                </Link>
               </li>
             </ul>
           </div>
@@ -120,19 +131,33 @@ export default function Footer() {
 
             <ul className="space-y-4 text-gray-400">
               <li className="hover:text-[#7ED957] cursor-pointer transition">
+                <Link href="/privacypolicy">
                 Privacy Policy
+                </Link>
               </li>
 
               <li className="hover:text-[#7ED957] cursor-pointer transition">
+                <Link href="/terms&conditions">
                 Terms & Conditions
+                </Link>
               </li>
 
               <li className="hover:text-[#7ED957] cursor-pointer transition">
+                <Link href="/refund-policy">
                 Refund Policy
+                </Link>
               </li>
 
               <li className="hover:text-[#7ED957] cursor-pointer transition">
+                <Link href="/shipping-and-exchange">
+               Shipping & Exchange Policy
+                </Link>
+              </li>
+
+              <li className="hover:text-[#7ED957] cursor-pointer transition">
+                <Link href="/disclaimer">
                 Disclaimer
+                </Link>
               </li>
             </ul>
           </div>

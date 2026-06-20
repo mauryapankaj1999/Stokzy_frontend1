@@ -27,7 +27,7 @@ export default function Courses() {
           Industry-grade courses designed by professionals. No fluff. Only
           results.
         </p>
-        <div className="max-w-2xl mx-auto ">
+        {/* <div className="max-w-2xl mx-auto ">
           <div className="flex items-center bg-white border border-gray-200 rounded-3xl px-2 py-3 shadow-lg hover:shadow-xl transition-all duration-300">
             <svg
               className="w-6 h-6 text-gray-400"
@@ -50,15 +50,13 @@ export default function Courses() {
               placeholder="Search courses..."
               className="w-full ml-4 bg-transparent outline-none text-gray-800 placeholder:text-gray-400 text-lg"
             />
-            {/* <input
-                type="text"
-              /> */}
+           
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="flex flex-wrap justify-center gap-3 mb-6">
-        <button
+        <div
           onClick={() => {
             setShowSkeleton(true);
 
@@ -68,17 +66,17 @@ export default function Courses() {
               setShowSkeleton(false);
             }, 1000);
           }}
-          className={`px-5 py-2 rounded-full ${
+          className={`px-5 py-2 rounded-md cursor-pointer ${
               selectedCategory === ""
                 ? "bg-primary text-white"
                 : "bg-white border"
             }`}
         >
           All
-        </button>
+        </div>
 
         {categories?.data?.map((item: any) => (
-          <button
+          <div
             key={item._id}
             onClick={() => {
               setShowSkeleton(true);
@@ -89,14 +87,14 @@ export default function Courses() {
                 setShowSkeleton(false);
               }, 1000);
             }}
-            className={`px-5 py-2 rounded-full ${
+            className={`px-5 py-2 rounded-md cursor-pointer ${
               selectedCategory === item._id
                 ? "bg-primary text-white"
                 : "bg-white border"
             }`}
           >
             {item.name}
-          </button>
+          </div>
         ))}
       </div>
 
